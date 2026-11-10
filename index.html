@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Годзила — Меню</title>
+<meta name="description" content="Менюто на ресторант Годзила, Варна.">
+<meta name="theme-color" content="#2a2421">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" as="image" href="img/hero-plate.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <img class="hero-plate" src="img/hero-plate.webp" alt="" width="646" height="802">
+  <div class="hero-top">
+    <div class="lang" role="group" aria-label="Език">
+      <button type="button" class="lang-btn is-on" data-lang="bg" aria-pressed="true">BG</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <img class="hero-logo" src="img/logo.svg" alt="Годзила — Food &amp; Drink, est. 1999 in Varna" width="180" height="180">
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-tag">so good<br>so Goodzila</p>
+    <h1 class="hero-title"><span class="sr">Меню</span><img class="meniu" src="img/meniu.svg" alt="" width="486" height="122"></h1>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Категории">
+  <a class="bar-logo" href="#top" aria-label="Към началото"><img src="img/logo.svg" alt="" width="36" height="36"></a>
+  <div class="chips" id="chips"></div>
+  <div class="lang lang--bar" role="group" aria-label="Език">
+    <button type="button" class="lang-btn is-on" data-lang="bg" aria-pressed="true">BG</button>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</nav>
+
+<main id="menu"></main>
+
+<footer class="foot">
+  <img src="img/logo.svg" alt="" width="84" height="84">
+  <p class="foot-note" id="footNote"></p>
+  <div id="allergens"></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="menu-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
