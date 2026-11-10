@@ -99,11 +99,17 @@ button{font:inherit;color:inherit}
 .sec--dark .it-p{color:#ff7a5c}
 .it--plain .it-meta{margin-top:5px}
 
+.grp-note{margin:-2px 16px 8px;color:var(--muted);font-size:14px;line-height:1.35}
+.it-meta + .it-meta{margin-top:4px}
+.it-per{font-weight:400;font-size:14px;color:var(--muted)}
+
 /* ---------- footer ---------- */
 .foot{padding:36px 16px calc(40px + env(safe-area-inset-bottom));text-align:center;color:var(--muted);
   border-top:1px solid var(--line);background:var(--paper-2)}
 .foot img{margin:0 auto 12px;width:84px;height:84px}
 .foot-note{margin:0 auto;max-width:34em;font-size:14px}
+.foot-notice{margin-top:10px;font-size:13px}
+.foot-contact{margin-top:20px;font-size:14px;line-height:1.5}.foot-contact p{margin:0}.foot-contact a{color:inherit}
 .alg{max-width:34em;margin:18px auto 0;text-align:left;font-size:13px;columns:2;column-gap:18px}
 .alg h2{column-span:all;font:600 13px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px;color:var(--ink)}
 .alg p{margin:0 0 3px;break-inside:avoid}

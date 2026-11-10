@@ -25,11 +25,15 @@
     var d = txt(it.desc);
     var al = it.allergens.length ? ' <span class="it-all">*' + it.allergens.join(", ") + "</span>" : "";
     if (d) h += '<p class="it-desc">' + esc(d) + al + "</p>";
-    h += '<div class="it-meta">';
-    if (it.weight) h += '<span class="it-w">' + esc(it.weight) + "</span>";
-    h += '<span class="it-p">' + esc(it.price_eur) + " €</span>";
-    if (!d && al) h += al;
-    h += "</div></div></li>";
+    var vs = it.variants || [{ weight: it.weight, price_eur: it.price_eur }];
+    vs.forEach(function (v, i) {
+      h += '<div class="it-meta">';
+      if (v.weight) h += '<span class="it-w">' + esc(v.weight) + "</span>";
+      h += '<span class="it-p">' + esc(v.price_eur) + " €" + (it.price_per ? '<span class="it-per"> / ' + esc(it.price_per) + "</span>" : "") + "</span>";
+      if (!d && al && i === vs.length - 1) h += al;
+      h += "</div>";
+    });
+    h += "</div></li>";
     return h;
   }
 
@@ -40,7 +44,8 @@
       html += '<section class="sec' + (s.dark ? " sec--dark" : "") + '" id="' + s.id + '" aria-label="' + esc(s.nav) + '">';
       s.groups.forEach(function (g) {
         html += '<div class="grp"><div class="grp-head"><h2 class="grp-script">' + esc(g.script) + "</h2>" +
-          (g.label ? '<span class="grp-label">' + esc(g.label) + "</span>" : "") + '</div><ul class="items">';
+          (g.label ? '<span class="grp-label">' + esc(g.label) + "</span>" : "") + "</div>" +
+          (g.note ? '<p class="grp-note">' + esc(g.note) + "</p>" : "") + '<ul class="items">';
         var k = 0;
         g.items.forEach(function (it) { html += item(it, it.photo ? (k++ % 2 === 1) : false); });
         html += "</ul></div>";
@@ -51,6 +56,12 @@
     main.innerHTML = html;
     chips.innerHTML = nav;
     document.getElementById("footNote").textContent = M.note || T.bg.note;
+    Array.prototype.forEach.call(document.querySelectorAll(".foot-notice,.foot-contact"), function (n) { n.remove(); });
+    if (M.notice) document.getElementById("footNote").insertAdjacentHTML("afterend", '<p class="foot-note foot-notice">' + esc(M.notice) + "</p>");
+    if (M.contact) {
+      var c = M.contact;
+      document.getElementById("allergens").insertAdjacentHTML("afterend", '<div class="foot-contact"><p>' + esc(c.delivery) + '</p><p><a href="tel:' + c.phone.replace(/\s/g, "") + '">' + esc(c.phone) + '</a> · <a href="https://' + c.web + '">' + esc(c.web) + "</a></p><p>" + esc(c.address) + "</p></div>");
+    }
     if (M.allergens) {
       var a = '<div class="alg"><h2>Алергени</h2>';
       Object.keys(M.allergens).forEach(function (k) { a += "<p>" + esc(k) + ". " + esc(M.allergens[k]) + "</p>"; });
